@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kubeflow
+
+resources:
+  - ../base
+  - ingress.yaml
+  - secret.yaml
+  # - github.com/kubeflow/pipelines/manifests/kustomize/env/cert-manager/platform-agnostic-k8s-native?ref=2.14.3
+
+patches:
+  - path: certificate.yaml
+  #- path: delete-certificate.yaml
+  - path: delete-issuer.yaml

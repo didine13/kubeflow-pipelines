@@ -1,0 +1,5 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: kfp-api-webhook-selfsigned-issuer
+$patch: delete
