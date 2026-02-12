@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-pipelines
+spec:
+  destination:
+    namespace: kubeflow
+    server: https://kubernetes.default.svc
+  source:
+    path: content/infra/k8s-install/assets/kubeflow/kubeflow-pipelines/overlays
+    repoURL: https://github.com/didine13/kubeflow-pipelines.git
+    # repoURL: "https://gitlab.adaltas.com/alliage/knowledge-base.git"
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+#       - ServerSideApply=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: kubeflow-pipelines
+# spec:
+#   destination:
+#     namespace: kubeflow
+#     server: "https://kubernetes.default.svc"
+#   source:
+#     path: manifests/kustomize/env/cert-manager/platform-agnostic-k8s-native
+#     repoURL: https://github.com/kubeflow/pipelines.git
+#     targetRevision: 2.14.3
+#   project: default
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true
+#       - ServerSideApply=true
+#     automated:
+#       prune: false
+#       selfHeal: false
